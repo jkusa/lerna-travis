@@ -1,0 +1,10 @@
+---
+language: node_js
+node_js:
+  - "6"
+
+env:
+  - PACKAGE=foo
+  - PACKAGE=bar
+  - PACKAGE=baz
+script: lerna run test --scope $PACKAGE
