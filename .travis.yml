@@ -5,16 +5,26 @@ cache:
 notifications:
   email: false
 node_js:
-  - '6'
-
+  - '8'
 env:
-  - PACKAGE=foo
-  - PACKAGE=bar
-  - PACKAGE=baz
+  matrix:
+    - PACKAGE=foo
+      #- PACKAGE=bar
+      #- PACKAGE=baz
+
 script: lerna run test --scope $PACKAGE
 
-after_success:
-  - npm run travis-deploy-once "npm run semantic-release"
+jobs:
+  include:
+    # Define the release stage that runs semantic-release
+    - stage: release
+      node_js: '8'
+      script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npm run-script semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/

@@ -1,6 +1,7 @@
 {
   "name": "lerna-travis",
   "devDependencies": {
+    "@semantic-release/git": "^3.0.1",
     "lerna": "^2.0.0-rc.4",
     "semantic-release": "^12.4.1"
   },
@@ -13,14 +14,13 @@
     "url": "https://github.com/jkusa/lerna-travis.git"
   },
   "release": {
-      "verifyConditions": ["@semantic-release/git", "@semantic-release/github"],
-      "getLastRelease": "@semantic-release/git",
-      "publish": [
-        {
-          "path": "@semantic-release/npm",
-          "npmPublish": false
-        }, 
-        "@semantic-release/github"
-      ]
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
+      },
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
   }
 }
