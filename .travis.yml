@@ -1,10 +1,20 @@
----
 language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
 node_js:
-  - "6"
+  - '6'
 
 env:
   - PACKAGE=foo
   - PACKAGE=bar
   - PACKAGE=baz
 script: lerna run test --scope $PACKAGE
+
+after_success:
+  - npm run travis-deploy-once "npm run semantic-release"
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
