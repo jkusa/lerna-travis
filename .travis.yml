@@ -25,6 +25,14 @@ jobs:
         skip_cleanup: true
         script:
           - npm run-script semantic-release
+    - stage: post-release
+      node_js: '8'
+      script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - echo 'post release'
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
