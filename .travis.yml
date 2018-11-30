@@ -12,6 +12,9 @@ env:
       #- PACKAGE=bar
       #- PACKAGE=baz
 
+install:
+- lerna bootstrap
+
 script: lerna run test --scope $PACKAGE
 
 jobs:
